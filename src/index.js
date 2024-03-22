@@ -10,7 +10,6 @@ class Counter extends React.Component {
   }
 
   handleClick = (e) => {
-    e.preventdefault()
     this.setState((prevState) => {
       return {
         count: prevState.count - (this.props.jump || 1),
@@ -46,6 +45,6 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 root.render(
   <div>
-    <Counter start={1} />
+    <Counter start={0} />
   </div>
 );
