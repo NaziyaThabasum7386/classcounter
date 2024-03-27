@@ -1,51 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 
-
-class Counter extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: this.props.start,
+      count: 0
     };
   }
 
-  handleClick = (e) => {
-    this.setState((prevState) => {
-      return {
-        count: prevState.count - (this.props.jump || 1),
-      };
-    });
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  handleDecrement = () => {
+    this.setState({ count: this.state.count - 1 });
   };
 
   render() {
     return (
       <div>
         <h1>Counter App</h1>
-        <h3>Count : {this.state.count}</h3>
-        
-        <button
-          onClick={(e) => {
-            this.setState((prevState) => {
-              return {
-                count: prevState.count + (this.props.jump || 1),
-              };
-            });
-          }}
-        >
-          Increment
-        </button>
-        <button onClick={this.handleClick}>Decrement</button>
-       
-      </div>
-    );
-  }
-}
-
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Counter start={0} />
+        <h2 data-testid="count">Count: {this.state.count}</h2>
+        <button onClick={this.handleIncrement} data-testid="increment-button">Increment</button>
+        <button onClick={this.handleDecrement} data-testid="decrement-button">Decrement</button>
       </div>
     );
   }
